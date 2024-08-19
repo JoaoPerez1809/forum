@@ -24,6 +24,46 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 120px;
         }
+        .navbar {
+            background-color: #6D6565;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+        }
+        .navbar .brand {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            padding: 20px 0;
+        }
+        .navbar .menu {
+            display: flex;
+        }
+        .navbar .menu a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 20px 50px;
+            text-decoration: none;
+        }
+        .navbar .menu a:hover {
+            background-color: #656E8F;
+            color: white;
+        }
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar li {
+            margin-left: 15px;
+        }
         .topic-header {
             margin-bottom: 20px;
         }
@@ -124,9 +164,18 @@
     <nav class="navbar">
         <div class="brand">For1</div>
         <div class="menu">
-            <a href="Tópicos.html">Tópicos</a>
-            <a href="Perfil.html">Perfil</a>
-            <a href="Tópicos.html">Sair</a>
+        <ul>
+                <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Tópicos</a>
+                @auth
+                    <li><a href="{{ route('ListUser', ['uid' => Auth::user()->id]) }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Perfil</a></li>
+                    <li><a href="{{ route('logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a></li>
+                @else
+                    <li><a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Login</a></li>
+                    @if (Route::has('register'))
+                        <li><a href="{{ route('register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Cadastrar</a></li>
+                    @endif
+                @endauth
+            </ul>
         </div>
     </nav>
     <div class="container">
