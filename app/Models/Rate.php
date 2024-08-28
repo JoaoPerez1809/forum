@@ -10,7 +10,7 @@ class Rate extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rate'
+        'vote'
     ];
 
     public function user()
