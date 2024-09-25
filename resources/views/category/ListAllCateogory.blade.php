@@ -1,4 +1,4 @@
-@extends('layouts.gpt')
+@extends('category.view_categoria')
 
 @section('header', 'Listar Todos os Usuários')
 
@@ -6,8 +6,8 @@
 
     <table border="1">
         <tr>
-            <th>Nome</th>
-            <th>Email</th>
+            <th>Categoria</th>
+            
         </tr>
         <tr>
             <td>Fulano</td>

@@ -22,5 +22,4 @@ abstract class Post extends Model
     {
         return $this->hasMany(Rate::class);
     }
-
 }

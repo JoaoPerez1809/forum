@@ -55,6 +55,45 @@ Route::get('/visualizar_topico', function () {
 });
 
 
+//Category
+Route::match (
+    ['get', 'post'],
+    '/register',
+    [UserController::class, 'registerUser']
+)->name('register');
+
+//Controlar a categoria
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [UserController::class, 'listAllUsers'])->name('ListAllUsers');
+    Route::get('/users/{uid}', [UserController::class, 'listUser'])->name('ListUser');
+    //Route::get('/users/{uid}/edit', [UserController::class, 'editUser'])->name('routeEditUser');
+    //Route::get('/users/{uid}/delete', [UserController::class, 'deleteUser'])->name('routeDeleteUser');
+    Route::put('/users/{uid}/edit',
+    [UserController::class, 'updateUser'])->name('UpdateUser');
+    
+    Route::delete('/users/{uid}/delete',
+    [UserController::class, 'deleteUser'])->name('DeleteUser');
+});
+
+//Tag
+Route::match (
+    ['get', 'post'],
+    '/register',
+    [UserController::class, 'registerUser']
+)->name('register');
+
+//Controlar a tag
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [UserController::class, 'listAllUsers'])->name('ListAllUsers');
+    Route::get('/users/{uid}', [UserController::class, 'listUser'])->name('ListUser');
+    //Route::get('/users/{uid}/edit', [UserController::class, 'editUser'])->name('routeEditUser');
+    //Route::get('/users/{uid}/delete', [UserController::class, 'deleteUser'])->name('routeDeleteUser');
+    Route::put('/users/{uid}/edit',
+    [UserController::class, 'updateUser'])->name('UpdateUser');
+    
+    Route::delete('/users/{uid}/delete',
+    [UserController::class, 'deleteUser'])->name('DeleteUser');
+});
 
 
      
