@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,46 +56,43 @@ Route::get('/visualizar_topico', function () {
     return view('layouts.visualizar_topico');
 });
 
-
 //Category
-Route::match (
-    ['get', 'post'],
-    '/register',
-    [UserController::class, 'registerUser']
-)->name('register');
+//Visualização sem auth
+Route::get('/category', [CategoryController::class, 'listAllCategory'])->name('ListAllCategory');
+Route::get('/category/{cid}', [CategoryController::class, 'showCategory'])->name('showCategory');
 
 //Controlar a categoria
 Route::middleware('auth')->group(function () {
-    Route::get('/users', [UserController::class, 'listAllUsers'])->name('ListAllUsers');
-    Route::get('/users/{uid}', [UserController::class, 'listUser'])->name('ListUser');
-    //Route::get('/users/{uid}/edit', [UserController::class, 'editUser'])->name('routeEditUser');
-    //Route::get('/users/{uid}/delete', [UserController::class, 'deleteUser'])->name('routeDeleteUser');
-    Route::put('/users/{uid}/edit',
-    [UserController::class, 'updateUser'])->name('UpdateUser');
+
+    Route::match (
+        ['get', 'post'],
+        '/createcat',
+        [CategoryController::class, 'createCategory']
+    )->name('CreateCategory');
     
-    Route::delete('/users/{uid}/delete',
-    [UserController::class, 'deleteUser'])->name('DeleteUser');
+    Route::put('/category/{cid}/edit',
+    [CategoryController::class, 'updateCategory'])->name('UpdateCategory');
+
+    Route::delete('/category/{cid}/delete',
+    [CategoryController::class, 'deleteCategory'])->name('DeleteCategory');
 });
 
 //Tag
-Route::match (
-    ['get', 'post'],
-    '/register',
-    [UserController::class, 'registerUser']
-)->name('register');
+Route::get('/tag', [TagController::class, 'listAllTags'])->name('ListAllTags');
+Route::get('/tag/{tid}', [TagController::class, 'showTag'])->name('showTag');
 
 //Controlar a tag
 Route::middleware('auth')->group(function () {
-    Route::get('/users', [UserController::class, 'listAllUsers'])->name('ListAllUsers');
-    Route::get('/users/{uid}', [UserController::class, 'listUser'])->name('ListUser');
-    //Route::get('/users/{uid}/edit', [UserController::class, 'editUser'])->name('routeEditUser');
-    //Route::get('/users/{uid}/delete', [UserController::class, 'deleteUser'])->name('routeDeleteUser');
-    Route::put('/users/{uid}/edit',
-    [UserController::class, 'updateUser'])->name('UpdateUser');
+
+    Route::match (
+        ['get', 'post'],
+        '/createtag',
+        [TagController::class, 'createTag']
+    )->name('CreateTag');
     
-    Route::delete('/users/{uid}/delete',
-    [UserController::class, 'deleteUser'])->name('DeleteUser');
+    Route::put('/tag/{tid}/edit',
+    [TagController::class, 'updateTag'])->name('UpdateTag');
+
+    Route::delete('/tag/{tid}/delete',
+    [TagController::class, 'deleteTag'])->name('DeleteTag');
 });
-
-
-     
