@@ -63,11 +63,11 @@
             <form action="{{ route('UpdateCategory', [$category->id]) }}" method="post">
                 @csrf
                 @method('put')
-                <label for="title">Título</label>
-                <input type="text" id="title" name="title" placeholder="Título" value="{{ $category->title }}" required>
+                <label for="title">Título</label><br>
+                <input type="text" id="title" name="title" placeholder="Título" value="{{ $category->title }}" required><br>
                 
-                <label for="description">Descrição</label>
-                <textarea id="description" name="description" placeholder="Descrição" required>{{ $category->description }}</textarea>
+                <label for="description">Descrição</label><br>
+                <textarea id="description" name="description" placeholder="Descrição" required>{{ $category->description }}</textarea><br>
 
                 <input type="submit" value="Editar" id="submit-button" class="btn btn-warning">
             </form>
