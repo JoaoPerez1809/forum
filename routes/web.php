@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\TopicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,4 +96,25 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/tag/{tid}/delete',
     [TagController::class, 'deleteTag'])->name('DeleteTag');
+});
+
+
+//Topic
+Route::get('/topic', [TopicController::class, 'listAllTopics'])->name('ListAllTopics');
+Route::get('/topic/{tid}', [TopicController::class, 'showTopic'])->name('showTopic');
+
+//Controlar o topic
+Route::middleware('auth')->group(function () {
+
+    Route::match (
+        ['get', 'post'],
+        '/createtopic',
+        [TopicController::class, 'createTopic']
+    )->name('CreateTopic');
+    
+    Route::put('/topic/{tid}/edit',
+    [TopicController::class, 'updateTopic'])->name('UpdateTopic');
+
+    Route::delete('/topic/{tid}/delete',
+    [TopicController::class, 'deleteTopic'])->name('DeleteTopic');
 });
