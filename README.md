@@ -5,7 +5,6 @@
     <ol>
         <li><strong>Home Page</strong>
             <ul>
-	@@ -45,8 +45,7 @@
             </ul>
         </li>
          </ol>
@@ -13,7 +12,6 @@
     <ol>
         <li><strong>Home Page</strong>
             <ul>
-	@@ -68,14 +67,13 @@
                 <li>Features to create, edit, view, and delete tags.</li>
             </ul>
         </li>
@@ -27,7 +25,6 @@
     <h3>1. User Registration</h3>
     <ul>
         <li>Registration form with fields for name, email, and password.</li>
-	@@ -91,14 +89,12 @@
         <li>Redirect authenticated users to the home page.</li>
         <li>User feedback in case of authentication failure.</li>
     </ul>
@@ -40,7 +37,6 @@
     <ul>
         <li>Function to end the user's session.</li>
         <li>Redirect to the home page after logout.</li>
-	@@ -122,16 +118,17 @@
             </ul>
         </li>
     </ul>
