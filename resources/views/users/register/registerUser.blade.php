@@ -1,1 +1,1 @@
-@extends('users.register.register')
+@extends('auth.login.auth')

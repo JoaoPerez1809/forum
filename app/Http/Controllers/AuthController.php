@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function loginUser(Request $request) {
         if($request->method() === 'GET'){
-        return view('auth.login.login');
+        return view('auth.login.auth');
         } else {
             $credentials = $request->validate([
                 'email' => 'required|string|email',
