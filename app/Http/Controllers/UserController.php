@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function listUser(Request $request, $uid) {
         $user = User::where('id', $uid)->first();
-        $message;
+        //$message; falar com joao
         return view('users.id.listUserById', ['user' => $user]);
     }
 

@@ -1,1 +1,1 @@
-@extends('auth.login.login')
+@extends('auth.login.auth')
