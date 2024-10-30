@@ -40,15 +40,32 @@
 
 <div class="form-container">
     <h1>Criar Topico</h1>
-    <form id="registration-form" action="{{ route('CreateCategory') }}" method="post">
-        @csrf
-        <label for="category">Topico</label>
-        <input type="text" id="title" name="title" placeholder="Nome da Categoria" value="{{ old('title') }}" required>
-        @error('title') <span class="error">{{ $message }}</span> @enderror
+    <form id="registration-form" action="{{ route('CreateTopic') }}" method="post">
+                @csrf
+                <label for="title" class="form-label">Título</label>
+                <input type="text" name="title" id="title" class="form-control" />
+                @error('title') <span>{{ $message }}</span> <br /> @enderror
 
-        <label for="description">Descrição</label>
-        <textarea id="description" name="description" placeholder="Descrição da Categoria" rows="4">{{ old('description') }}</textarea>
-        @error('description') <span class="error">{{ $message }}</span> @enderror
+                <label for="description" class="form-label">Descrição</label>
+                <input type="text" name="description" id="description" class="form-control" />
+                @error('description') <span>{{ $message }}</span> <br /> @enderror
+
+                <label for="status" class="form-label">Status</label>
+                <input type="text" name="status" id="status" class="form-control" />
+                @error('status') <span>{{ $message }}</span> <br /> @enderror
+
+                <label for="image" class="form-label">Imagem</label>
+                <input type="text" name="image" id="image" class="form-control" />
+                @error('image') <span>{{ $message }}</span> <br /> @enderror
+
+                <label for="category" class="form-label">Categoria</label>
+                <select name="category" id="category" class="form-control">
+                @if(isset($categories))
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                @endforeach
+                @endif
+                </select>
 
         <input type="submit" value="Cadastrar" id="submit-button">
     </form>

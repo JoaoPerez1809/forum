@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Support\facades\Auth;
 
 class TopicController extends Controller
 {
@@ -39,9 +40,11 @@ class TopicController extends Controller
     }
 
     public function createTopic(Request $request) {
-        $categories = Category::all();
+        $categories = Category::all(); 
+        $userId = Auth::id();
+    
         if ($request->method() === 'GET') {
-            return view('topic.createtopic.createTopic');
+            return view('topic.createtopic.createTopic', compact('categories'));
         } else {
             $request->validate([
                 'title' => 'required|string',
@@ -57,17 +60,18 @@ class TopicController extends Controller
                 'status' => $request->status,
                 'category_id' => $request->category
             ]);
+
+            $topic->post()->create([
+                'user_id' => Auth::id(),
+                'image' => $request->image,
+            ]);
     
+            session(['categories' => $categories]);
             
-            // $post = new Post([
-            //     'image' => $request->image
-            // ]);
-    
-            // $topic->post()->save($post);
-    
-            return redirect()->intended('/topic', ['categories' => $categories])->with('success', 'Topic registrada com sucesso');
+            return redirect()->intended('/topic')->with('success', 'Tópico registrado com sucesso');
         }
     }
+    
 
     public function editTopic() {
         return view('topic.id.edit.editTopic');
