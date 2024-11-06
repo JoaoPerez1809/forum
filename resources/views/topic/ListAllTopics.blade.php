@@ -1,0 +1,1 @@
+@extends('topic.view_topic')

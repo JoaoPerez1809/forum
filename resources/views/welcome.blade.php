@@ -129,7 +129,7 @@
             @endauth
 
             <h1>Tópicos</h1>
-            <div class="topic" onclick="window.location.href='/visualizar_topico';">
+            <div class="topic" onclick="window.location.href='/topic';">
                 <h2>Nome do Título</h2>
                 <p>Nome do Conteúdo</p>
                 <div class="meta">

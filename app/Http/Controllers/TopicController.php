@@ -12,13 +12,13 @@ use Illuminate\Support\facades\Auth;
 class TopicController extends Controller
 {
     public function listAllTopics(Request $request) {
-        $topic = Topic::all();
+        $topics = Topic::all();
         return view('topic.listAllTopics', compact('topics')); 
     }
 
     public function showTopic(Request $request, $tid) {
         $topic = Topic::findOrFail($tid);
-        return view('topic.id.showTopic', compact('topic')); 
+        return view('topic.id.showTopic'); 
     }
 
     public function updateTopic(Request $request, $tid) {
@@ -39,13 +39,16 @@ class TopicController extends Controller
         ->with('message', 'Deletado com sucesso!');
     }
 
-    public function createTopic(Request $request) {
-        $categories = Category::all(); 
+    public function createTopic()
+    {
+        $categories = Category::all();
+        return view('topic.createtopic.createTopic', ['categories' => $categories]);
+    }
+
+    public function storeTopic(Request $request) {
         $userId = Auth::id();
     
-        if ($request->method() === 'GET') {
-            return view('topic.createtopic.createTopic', compact('categories'));
-        } else {
+
             $request->validate([
                 'title' => 'required|string',
                 'description' => 'required|string',
@@ -65,11 +68,9 @@ class TopicController extends Controller
                 'user_id' => Auth::id(),
                 'image' => $request->image,
             ]);
-    
-            session(['categories' => $categories]);
-            
-            return redirect()->intended('/topic')->with('success', 'Tópico registrado com sucesso');
-        }
+
+            return redirect()->intended('/topic')
+        ->with('message', 'Criado com sucesso!');
     }
     
 

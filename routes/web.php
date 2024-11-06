@@ -101,20 +101,17 @@ Route::middleware('auth')->group(function () {
 
 //Topic
 Route::get('/topic', [TopicController::class, 'listAllTopics'])->name('ListAllTopics');
-Route::get('/topic/{tid}', [TopicController::class, 'showTopic'])->name('showTopic');
+Route::get('/topic/{tcid}', [TopicController::class, 'showTopic'])->name('showTopic');
 
 //Controlar o topic
 Route::middleware('auth')->group(function () {
 
-    Route::match (
-        ['get', 'post'],
-        '/createtopic',
-        [TopicController::class, 'createTopic']
-    )->name('CreateTopic');
+    Route::get('/createtopic', [TopicController::class, 'createTopic'])->name('CreateTopic');
+    Route::post('/createtopic', [TopicController::class, 'storeTopic'])->name('CreateTopic');
     
-    Route::put('/topic/{tid}/edit',
+    Route::put('/topic/{tcid}/edit',
     [TopicController::class, 'updateTopic'])->name('UpdateTopic');
 
-    Route::delete('/topic/{tid}/delete',
+    Route::delete('/topic/{tcid}/delete',
     [TopicController::class, 'deleteTopic'])->name('DeleteTopic');
 });
