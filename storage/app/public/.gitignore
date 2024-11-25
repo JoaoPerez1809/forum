@@ -1,2 +1,3 @@
-*
-!.gitignore
+/storage
+!/storage/app/public/topics/
+!/storage/app/public/comments/
