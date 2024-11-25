@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,10 +109,22 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/createtopic', [TopicController::class, 'createTopic'])->name('CreateTopic');
     Route::post('/createtopic', [TopicController::class, 'storeTopic'])->name('CreateTopic');
+
+    Route::get('/topic/{tid}/edit', [TopicController::class, 'editTopic'])->name('EditTopic');
     
     Route::put('/topic/{tcid}/edit',
     [TopicController::class, 'updateTopic'])->name('UpdateTopic');
 
+    Route::get('/topic/{tcid}/delete', [TopicController::class, 'deleteTopic'])->name('DeleteTopic');
     Route::delete('/topic/{tcid}/delete',
     [TopicController::class, 'deleteTopic'])->name('DeleteTopic');
+});
+
+
+// Rotas de Comentários
+Route::middleware('auth')->group(function () {
+Route::post('/topics/{tcid}/comments', [CommentController::class, 'store'])->name('storeComment');
+Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])->name('editComment');
+Route::put('/comments/{id}', [CommentController::class, 'update'])->name('updateComment');
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('deleteComment');
 });

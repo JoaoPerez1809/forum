@@ -22,6 +22,18 @@
                     <a href="{{ route('showTopic', $topic->id) }}">
                         {{ $topic->title }}
                         </a>
+                        @if($topic->post->user_id == Auth::id())
+                        <a href="{{ route('EditTopic', $topic->id) }}" class="btn btn-secondary">
+                            Editar
+                        </a>
+                        <form action="{{ route('DeleteTopic', $topic->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este tópico?');">
+                                Deletar
+                            </button>
+                        </form>
+                    @endif
                 </li>
             @endforeach
             @endif

@@ -40,7 +40,7 @@
 
 <div class="form-container">
     <h1>Criar Topico</h1>
-    <form id="registration-form" action="{{ route('CreateTopic') }}" method="post">
+    <form id="registration-form" action="{{ route('CreateTopic') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <label for="title" class="form-label">Título</label>
                 <input type="text" name="title" id="title" class="form-control" />
@@ -55,7 +55,7 @@
                 @error('status') <span>{{ $message }}</span> <br /> @enderror
 
                 <label for="image" class="form-label">Imagem</label>
-                <input type="text" name="image" id="image" class="form-control" />
+                <input type="file" name="image" id="image" class="form-control" />
                 @error('image') <span>{{ $message }}</span> <br /> @enderror
 
                 <label for="category" class="form-label">Categoria</label>

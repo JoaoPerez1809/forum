@@ -5,12 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Inicio</title>
 
-    <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
     <style>
-        /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
         html {
             line-height: 1.15;
             -webkit-text-size-adjust: 100%;
@@ -33,7 +30,7 @@
             max-width: 600px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .topic {
+        /* .topic {
             background-color: #EFEFEF;
             padding: 20px;
             margin-top: 20px;
@@ -56,7 +53,7 @@
             text-align: right;
             font-size: 14px;
             color: #666;
-        }
+        } */
         .navbar {
             background-color: #6D6565;
             overflow: hidden;
@@ -129,14 +126,6 @@
             @endauth
 
             <h1>Tópicos</h1>
-            <div class="topic" onclick="window.location.href='/topic';">
-                <h2>Nome do Título</h2>
-                <p>Nome do Conteúdo</p>
-                <div class="meta">
-                    <p>Tag: <span>tag1</span></p>
-                    <p>Categoria: <span>Categoria1</span></p>
-                </div>
-            </div>
         </div>
     </div>
 </body>
