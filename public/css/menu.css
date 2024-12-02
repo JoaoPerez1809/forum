@@ -7,9 +7,11 @@
     list-style: none;
 }
 :root{
-    --bg-color: linear-gradient(to bottom, #150019, #3e0748, #ea1d63);
+    --bg-color: linear-gradient(to bottom, #ee8acb, #eb32b6, #ea1d63);
+    --bg-color-container: #FF8DA5;
     --text-color: #fff;
-    --main-color: #ea1d63;
+    --text-color-secondary: #7a0039;
+    --main-color: #ea1d63;   
 }
 body{
     min-height: 100vh;
@@ -93,22 +95,19 @@ header{
 }
 
 .container {
-    background-color: #FF8DA5;
+    background-color: var(--bg-color-container);
     padding: 20px;
     border-radius: 10px;
     width: 90%;
     max-width: 60%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 100px; 
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 150px auto 0px;
     text-align: center;
 }
 
 .container h1 {
     margin-bottom: 20px;
-    color: #fff;
+    color: var(--main-color);
     font-size: 1.8rem;
 }
 
@@ -189,6 +188,11 @@ header{
         flex-direction: column;
         align-items: center;   
         text-align: center;   
+    }
+
+    .container {
+        max-width: 90%; 
+        margin: 100px auto 0px;  
     }
 
     .capa {
