@@ -14,7 +14,7 @@ body{
     background: #ea1d63;
     overflow: hidden;
     background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
-                url("/imgs/fundo-login.png") no-repeat center / cover;
+                url("/imgs/auth/fundo-login.png") no-repeat center / cover;
     border-radius: 10px;
     box-shadow: 5px 20px 50px #7a0039;
 }
@@ -78,7 +78,7 @@ button:hover{
     border-radius: 60% / 10%;
     transform: translateY(-180px);
     background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
-                url("/imgs/fundo-login2.png") no-repeat center / cover;
+                url("/imgs/auth/fundo-login2.png") no-repeat center / cover;
     transition: .8s ease-in-out;
 }
 .login label{
