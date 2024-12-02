@@ -17,16 +17,16 @@ class TagController extends Controller
         $tag = Tag::findOrFail($tid);
         return view('tag.id.showTag', compact('tag')); 
     }
-
-    public function updateTag(Request $request, $tid) {
-        $tag = Tag::where('id', $tid)->first();
-        $tag->title = $request->title;
+    // Não achei necessario ter update para a tags
+    // public function updateTag(Request $request, $tid) {
+    //     $tag = Tag::where('id', $tid)->first();
+    //     $tag->title = $request->title;
         
-        $tag->save();
+    //     $tag->save();
 
-        return redirect()->route('showTag', [$tag->id])
-        ->with('message', 'Atualizado com sucesso!');
-    }
+    //     return redirect()->route('showTag', [$tag->id])
+    //     ->with('message', 'Atualizado com sucesso!');
+    // }
 
     public function deleteTag(Request $request, $tid) {
         $tag = Tag::where('id', $tid)->delete();
@@ -51,7 +51,8 @@ class TagController extends Controller
         }
     }
 
-    public function editTag() {
-        return view('tag.id.edit.editTag');
-    }
+    // Não achei necessario ter esse edit para a tag
+    // public function editTag() {
+    //     return view('tag.id.edit.editTag');
+    // }
 }

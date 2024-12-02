@@ -50,13 +50,6 @@ Route::middleware('auth')->group(function () {
     [UserController::class, 'deleteUser'])->name('DeleteUser');
 });
 
-//Routes Estaticos
-Route::get('/criar_topico', function () {
-    return view('layouts.criar_topico');
-});
-Route::get('/visualizar_topico', function () {
-    return view('layouts.visualizar_topico');
-});
 
 //Category
 //Visualização sem auth

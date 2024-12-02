@@ -67,6 +67,17 @@
                 @endif
                 </select>
 
+                <label for="tags" class="form-label">Tags</label>
+                @if(isset($tags))
+                @foreach ($tags as $tag)
+                <input type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag_{{ $tag->id }}">
+                    <label for="tag_{{ $tag->id }}">
+                        {{ $tag->title }}
+                    </label>
+                @endforeach
+                @endif
+                
+
         <input type="submit" value="Cadastrar" id="submit-button">
     </form>
 </div>

@@ -61,6 +61,12 @@
         <p><strong>Status:</strong> {{ $topic->status == 0 ? 'Fechado' : 'Aberto' }}</p>
         <p><strong>Descrição:</strong> {{ $topic->description }}</p>
         <p><strong>Categoria:</strong> {{ $topic->category->title ?? 'Categoria não encontrada' }}</p>
+        <p><strong>Tags:</strong>  @if($topic->tags && $topic->tags->isNotEmpty())
+                {{ $topic->tags->pluck('title')->join(', ', ' e ') }}.
+                @else
+                    <span>Nenhuma tag</span>
+                @endif
+        </p>
         @if(isset($topic->post->image) && !empty($topic->post->image))
         <img src="{{ asset('storage/' . $topic->post->image) }}" alt="Imagem do Tópico" style="max-width: 450px;">
         @else

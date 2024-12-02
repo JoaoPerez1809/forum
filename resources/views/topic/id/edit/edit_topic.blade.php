@@ -79,6 +79,16 @@
         @endforeach
     </select><br><br>
 
+    <label for="tags">Tags</label><br>
+    @foreach ($tags as $tag)
+        <label>
+            <input type="checkbox" name="tags[]" value="{{ $tag->id }}"
+                {{ $topic->tags->contains($tag->id) ? 'checked' : '' }}>
+            {{ $tag->title }}<br>
+        </label>
+    @endforeach
+            
+
     <!-- Status -->
     <label for="status">Status:</label><br>
     <select id="status" name="status" required>

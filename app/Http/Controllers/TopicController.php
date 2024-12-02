@@ -7,17 +7,18 @@ use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Support\facades\Auth;
 
 class TopicController extends Controller
 {
     public function listAllTopics(Request $request) {
-        $topics = Topic::with(['post.user', 'category'])->get();
+        $topics = Topic::with(['post.user', 'category', 'tags'])->get();
         return view('topic.listAllTopics', compact('topics')); 
     }
 
     public function showTopic(Request $request, $tid) {
-        $topic = Topic::with(['post.user', 'category'])->findOrFail($tid);
+        $topic = Topic::with(['post.user', 'category', 'tags'])->findOrFail($tid);
         return view('topic.id.showTopic', compact('topic'));
     }
 
@@ -29,6 +30,9 @@ class TopicController extends Controller
         'status' => 'required|int',
         'category' => 'required',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'tags' => 'array',
+        'tags.*' => 'exists:tags,id',
+        
     ]);
 
     $topic = Topic::findOrFail($tid);
@@ -52,6 +56,10 @@ class TopicController extends Controller
         $topic->post->save();
     }
 
+    if ($request->tags) {
+        $topic->tags()->sync($request->tags);
+    }
+
     $topic->save();
 
     return redirect()->route('showTopic', [$topic->id])
@@ -59,7 +67,14 @@ class TopicController extends Controller
 }
 
     public function deleteTopic(Request $request, $tid) {
-        $topic = Topic::where('id', $tid)->delete();
+        $topic = Topic::findOrFail($id);
+
+        if ($topic->post) {
+            \Storage::disk('public')->delete($topic->post->image);
+            $topic->post->delete();
+        }
+        $topic->tags()->detach();
+        $topic->delete();
         return redirect()->intended('/topic')
         ->with('message', 'Deletado com sucesso!');
     }
@@ -67,7 +82,8 @@ class TopicController extends Controller
     public function createTopic()
     {
         $categories = Category::all();
-        return view('topic.createtopic.createTopic', ['categories' => $categories]);
+        $tags = Tag::all();
+        return view('topic.createtopic.createTopic', ['categories' => $categories],['tags' => $tags]);
     }
 
     public function storeTopic(Request $request) {
@@ -80,6 +96,8 @@ class TopicController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'status' => 'required|int',
                 'category' => 'required',
+                'tags' => 'array',
+                'tags.*' => 'exists:tags,id',
             ]);
 
 
@@ -100,6 +118,10 @@ class TopicController extends Controller
                 'image' => $imagePath,
             ]);
 
+            if ($request->tags) {
+                $topic->tags()->attach($request->tags);
+            }
+
             return redirect()->intended('/topic')
         ->with('message', 'Criado com sucesso!');
     }
@@ -107,8 +129,9 @@ class TopicController extends Controller
 
     public function editTopic($tid)
 {
-    $topic = Topic::with(['post.user', 'category'])->findOrFail($tid);
+    $topic = Topic::with(['post.user', 'category', 'tags'])->findOrFail($tid);
     $categories = Category::all(); // Busca todas as categorias
-    return view('topic.id.edit.editTopic', compact('topic', 'categories'));
+    $tags = Tag::all(); // Busca todas as categorias
+    return view('topic.id.edit.editTopic', compact('topic', 'categories', 'tags'));
 }
 }
