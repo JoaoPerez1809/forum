@@ -6,17 +6,19 @@ body{
     align-items: center;
     min-height: 100vh;
     font-family: "Poppins", sans-serif;
-    background: linear-gradient(to bottom, #150019, #3e0748, #ea1d63);
+    background: linear-gradient(to bottom, #ee8acb, #eb32b6, #ea1d63);;
 }
-.main{
+.main {
     width: 350px;
     height: 500px;
     background: #ea1d63;
     overflow: hidden;
-    background: url("/img/1.jpg") no-repeat center / cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+                url("/imgs/auth/fundo-login.png") no-repeat center / cover;
     border-radius: 10px;
-    box-shadow: 5px 20px 50px #000;
+    box-shadow: 5px 20px 50px #7a0039;
 }
+
 #chk{
     display: none;
 }
@@ -26,7 +28,9 @@ body{
     height: 100%;
 }
 label{
-    color: #fff;
+    color: #eee;
+    text-shadow:
+    5px 5px 10px #ea1d63; 
     font-size: 2.3em;
     justify-content: center;
     display: flex;
@@ -34,6 +38,7 @@ label{
     font-weight: bold;
     cursor: pointer;
     transition: 0.5s ease-in-out;
+
 }
 input{
     width: 120px;
@@ -72,11 +77,13 @@ button:hover{
     background: #eee;
     border-radius: 60% / 10%;
     transform: translateY(-180px);
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+                url("/imgs/auth/fundo-login2.png") no-repeat center / cover;
     transition: .8s ease-in-out;
 }
 .login label{
-    color: #ea1d63;
-    transform: scale(.6);
+    color: #eee;
+    transform: scale(.8);
 }
 #chk:checked ~ .login{
     transform: translateY(-500px);

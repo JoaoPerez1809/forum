@@ -24,7 +24,7 @@
             <li><a href="{{ route('criar_topico') }}" class="">Criar tópico <i class='bx bxs-book-heart'></i></a></li>
             <li><a href="{{ route('logout') }}" class="">Sair</a></li>
         @endauth
-        <li><a href="{{ route('ListAllTags') }}" class="">Feed Pops <i class="ri-heart-2-fill"></i></a></li>
+        <li><a href="#feed" class="">Feed Pops <i class="ri-heart-2-fill"></i></a></li>
     </ul>
     <div class="main">
         @auth
