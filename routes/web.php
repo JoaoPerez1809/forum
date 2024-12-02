@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\TopicController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,13 +50,6 @@ Route::middleware('auth')->group(function () {
     [UserController::class, 'deleteUser'])->name('DeleteUser');
 });
 
-//Routes Estaticos
-Route::get('/criar_topico', function () {
-    return view('layouts.criar_topico');
-});
-Route::get('/visualizar_topico', function () {
-    return view('layouts.visualizar_topico');
-});
 
 //Category
 //Visualização sem auth
@@ -101,20 +95,29 @@ Route::middleware('auth')->group(function () {
 
 //Topic
 Route::get('/topic', [TopicController::class, 'listAllTopics'])->name('ListAllTopics');
-Route::get('/topic/{tid}', [TopicController::class, 'showTopic'])->name('showTopic');
+Route::get('/topic/{tcid}', [TopicController::class, 'showTopic'])->name('showTopic');
 
 //Controlar o topic
 Route::middleware('auth')->group(function () {
 
-    Route::match (
-        ['get', 'post'],
-        '/createtopic',
-        [TopicController::class, 'createTopic']
-    )->name('CreateTopic');
+    Route::get('/createtopic', [TopicController::class, 'createTopic'])->name('CreateTopic');
+    Route::post('/createtopic', [TopicController::class, 'storeTopic'])->name('CreateTopic');
+
+    Route::get('/topic/{tid}/edit', [TopicController::class, 'editTopic'])->name('EditTopic');
     
-    Route::put('/topic/{tid}/edit',
+    Route::put('/topic/{tcid}/edit',
     [TopicController::class, 'updateTopic'])->name('UpdateTopic');
 
-    Route::delete('/topic/{tid}/delete',
+    Route::get('/topic/{tcid}/delete', [TopicController::class, 'deleteTopic'])->name('DeleteTopic');
+    Route::delete('/topic/{tcid}/delete',
     [TopicController::class, 'deleteTopic'])->name('DeleteTopic');
+});
+
+
+// Rotas de Comentários
+Route::middleware('auth')->group(function () {
+Route::post('/topics/{tcid}/comments', [CommentController::class, 'store'])->name('storeComment');
+Route::get('/comments/{id}/edit', [CommentController::class, 'edit'])->name('editComment');
+Route::put('/comments/{id}', [CommentController::class, 'update'])->name('updateComment');
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('deleteComment');
 });

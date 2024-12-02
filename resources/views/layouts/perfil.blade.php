@@ -167,6 +167,21 @@
             padding: 0;
             font-size: 16px;
         }
+        .profile-header input[type="file"] {
+        display: block; /* Torna o input visível */
+        margin: 10px 0; /* Espaçamento em volta do botão */
+        padding: 10px; /* Adiciona um pouco de padding */
+        background-color: #656E8F; /* Cor de fundo */
+        color: white; /* Cor do texto */
+        border: none; /* Remove bordas padrão */
+        border-radius: 5px; /* Bordas arredondadas */
+        cursor: pointer; /* Muda o cursor para "pointer" ao passar o mouse */
+        font-size: 14px; /* Tamanho do texto */
+        text-align: center; /* Centraliza o texto */
+        }
+        .profile-header input[type="file"]:hover {
+        background-color: #505A7B; /* Cor de fundo ao passar o mouse */
+        }
     }
 </style>
 </head>
@@ -196,8 +211,17 @@
     <div class="profile-header">
         <h1>Perfil</h1>
         <span>{{ session('message') }}</span>
+
+        <div class="user-icon">
+        @if($user->photo)
+            <img src="{{ asset('storage/' . $user->photo) }}" alt="Foto do Usuário" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+        @else
+            <i class="fas fa-user"></i>
+        @endif
+    </div>
+
         @if($user != null)
-        <form id="registration-form" action="{{ route('UpdateUser', [$user->id]) }}" method="post">
+        <form id="registration-form" action="{{ route('UpdateUser', [$user->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="profile-fields">
@@ -212,6 +236,11 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" placeholder="Senha">
                 @error('password') <span class="error">{{ $message }} </span> @enderror
+
+                <strong><label for="image" class="form-label">Selecionar Foto</label></strong>
+                <input type="file" id="image" name="image" class="form-control">
+                @error('image') <span class="error">{{ $message }}</span> @enderror<br/>
+                
             </div>
             <div class="action-buttons">
                 <form id="edit-form" action="{{ route('UpdateUser', [$user->id]) }}" method="post">

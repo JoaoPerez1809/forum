@@ -13,12 +13,14 @@
             </tr>
         </thead>
         <tbody>
+        @if(isset($categories))
             @foreach ($categories as $category)
                 <tr>
                     <td><a href="{{ route('showCategory', $category->id) }}">{{ $category->title }}</a></td>
                     <td>{{ $category->description }}</td>
                 </tr>
             @endforeach
+            @endif
         </tbody>
     </table>
 @endsection
