@@ -1,222 +1,25 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tela de Perfil</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-<style>
-  body {
-        font-family: Arial, Helvetica, sans-serif;
-        background-color: #717CA3;
-        margin: 0;
-    }
-    .navbar {
-        background-color: #6D6565;
-        overflow: hidden;
-        display: flex;
-        justify-content: space-between;
-        padding: 0 20px;
-        width: 100%;
-        position: fixed;
-        top: 0;
-    }
-    .navbar .brand {
-        display: flex;
-        align-items: center;
-        color: white;
-        font-size: 20px;
-        padding: 20px 0;
-    }
-    .navbar .menu {
-        display: flex;
-    }
-    .navbar .menu a {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 20px 50px;
-        text-decoration: none;
-    }
-    .navbar .menu a:hover {
-        background-color: #656E8F;
-        color: white;
-    }
-    .navbar ul {
-        list-style: none;
-        display: flex;
-        margin: 0;
-        padding: 0;
-    }
-    .navbar li {
-        margin-left: 15px;
-    }
-    .profile-container {
-        background-color: #D9D9D9;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        padding: 30px;
-        border-radius: 15px;
-        color: #000;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 300px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .profile-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        width: 100%;
-    }
-    .profile-header h1 {
-        margin: 0 0 10px 0;
-    }
-    .profile-header .user-icon {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background-color: #D0C9C9;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #808080;
-        font-size: 36px;
-        position: relative;
-        margin-top: 10px;
-    }
-    .profile-header input[type="file"] {
-        display: none;
-    }
-    .profile-header label {
-        cursor: pointer;
-    }
-    .profile-fields {
-        margin-top: 10px;
-        width: 100%;
-    }
-    label {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 14px;
-    }
-    input {
-        padding: 15px;
-        border: none;
-        outline: none;
-        font-size: 15px;
-        width: calc(100% - 30px);
-        margin-bottom: 20px;
-        background-color: #D0C9C9;
-        border-radius: 5px;
-    }
-    button, input[type="submit"] {
-        background-color: #656E8F;
-        border: none;
-        padding: 15px;
-        width: 100%;
-        border-radius: 10px;
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-    }
-    button:hover, input[type="submit"]:hover {
-        background-color: #505A7B;
-    }
-    .action-buttons {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: 10px;
-    }
-    .action-buttons form {
-        flex: 1;
-        margin: 0 5px;
-    }
-    .action-buttons input[type="submit"] {
-        padding: 15px;
-        font-size: 15px;
-    }
-    .error {
-        color: red;
-        font-size: 12px;
-    }
-    @media screen and (max-width: 600px) {
-        .profile-header {
-            flex-direction: column;
-            align-items: center;
-        }
-        .profile-header .user-icon {
-            position: static;
-            margin-top: 10px;
-        }
-        .profile-container {
-            text-align: center;
-            padding-top: 20px;
-        }
-        .profile-header h1 {
-            position: static;
-            transform: none;
-            background-color: transparent;
-            color: #000;
-            padding: 0;
-            font-size: 16px;
-        }
-        .profile-header input[type="file"] {
-        display: block; /* Torna o input visível */
-        margin: 10px 0; /* Espaçamento em volta do botão */
-        padding: 10px; /* Adiciona um pouco de padding */
-        background-color: #656E8F; /* Cor de fundo */
-        color: white; /* Cor do texto */
-        border: none; /* Remove bordas padrão */
-        border-radius: 5px; /* Bordas arredondadas */
-        cursor: pointer; /* Muda o cursor para "pointer" ao passar o mouse */
-        font-size: 14px; /* Tamanho do texto */
-        text-align: center; /* Centraliza o texto */
-        }
-        .profile-header input[type="file"]:hover {
-        background-color: #505A7B; /* Cor de fundo ao passar o mouse */
-        }
-    }
-</style>
-</head>
-<body>
-<div class="navbar">
-        <div class="brand">
-        For1
-        </div>
-        <div class="menu">
-            <ul>
-                <a href="{{ url('/') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Pagina Inicial</a>
-                @auth
-                    <li><a href="{{ route('ListUser', ['uid' => Auth::user()->id]) }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Perfil</a></li>
-                    <li><a href="{{ route('logout') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a></li>
-                @else
-                    <li><a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Login</a></li>
-                    @if (Route::has('register'))
-                        <li><a href="{{ route('register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Cadastrar</a></li>
-                    @endif
-                @endauth
-            </ul>
-        </div>
-    </div>
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+<link rel="stylesheet" href="{{ asset('css/perfil.css') }}">
+@endpush
+@extends('layouts.layout')
 
+@section('title', 'Página Inicial')
 
-    <div class="profile-container">
-    <div class="profile-header">
+@section('content')
+    <div class="container">
         <h1>Perfil</h1>
         <span>{{ session('message') }}</span>
-
-        <div class="user-icon">
+            <div class="user-icon">
         @if($user->photo)
-            <img src="{{ asset('storage/' . $user->photo) }}" alt="Foto do Usuário" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;">
+            <img src="{{ asset('storage/' . $user->photo) }}" class="perfil-img" alt="Foto do Usuário">
         @else
-            <i class="fas fa-user"></i>
+        <img src="../imgs/perfil-default.png" class="perfil-img" alt="Foto do Usuário">
         @endif
     </div>
 
@@ -237,7 +40,7 @@
                 <input type="password" id="password" name="password" placeholder="Senha">
                 @error('password') <span class="error">{{ $message }} </span> @enderror
 
-                <strong><label for="image" class="form-label">Selecionar Foto</label></strong>
+                <label for="image" class="form-label">Selecionar Foto</label>
                 <input type="file" id="image" name="image" class="form-control">
                 @error('image') <span class="error">{{ $message }}</span> @enderror<br/>
                 
@@ -257,6 +60,12 @@
         </form>
         @endif
     </div>
-</div>
-</body>
-</html>
+    <!--div class="profile-container">
+    <div class="profile-header">
+        <h1>Perfil</h1>
+        <span>{{ session('message') }}</span>
+
+        
+    </div>
+</div-->
+@endsection
