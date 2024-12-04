@@ -12,6 +12,7 @@
     --text-color: #fff;
     --text-color-secondary: #7a0039;
     --main-color: #ea1d63;   
+    --select-color: #7a0039;
 }
 body{
     min-height: 100vh;
@@ -28,6 +29,8 @@ header{
     align-items: center;
     justify-content: space-between;
     background: transparent;
+    text-shadow:
+    5px 5px 10px #ea1d63; 
     padding: 28px 12%;
     transition: all .50s ease;
 }

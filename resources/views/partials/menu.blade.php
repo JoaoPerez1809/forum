@@ -10,19 +10,17 @@
 <script type="text/javascript" src="js/menu.js"></script>
 @endpush
 <header>
-    <a href="#" class="logo"><i class="ri-home-heart-fill"></i><span>Logo</span></a>
+    <a href="/" class="logo"><i class="ri-home-heart-fill"></i><span>GPop</span></a>
     <ul class="navbar">
-        <li> 
+        <li>  
             @auth
                 <a>Bem-vindo(a), {{ Auth::user()->name }} &#127827; </a>
             @else
                 <a>Bem-vindo(a)&#127827;</a>
             @endauth
         </li>
-        <li><a href="{{ url('/') }}" class="active">Pagina Inicial</a></li>
         @auth
-            <li><a href="{{ route('criar_topico') }}" class="">Criar tópico <i class='bx bxs-book-heart'></i></a></li>
-            <li><a href="{{ route('logout') }}" class="">Sair</a></li>
+            <li><a href="" class="">Tópicos <i class='bx bxs-book-heart'></i></a></li>
         @endauth
         <li><a href="#feed" class="">Feed Pops <i class="ri-heart-2-fill"></i></a></li>
     </ul>
