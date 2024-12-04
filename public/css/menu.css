@@ -144,6 +144,103 @@ header{
     background-color: #fff;
     margin-bottom: 10px;
 }
+
+.btn-create-category {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffb6c1;
+    color: white;
+    text-decoration: none;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid #ff8aae;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-create-category:hover {
+    background-color: #ff8aae;
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-create-category:active {
+    background-color: #e5739f;
+    transform: translateY(0); 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#registration-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#registration-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #6b346a;
+}
+
+#registration-form input[type="text"],
+#registration-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #ffb6c1;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #6b346a;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
+}
+
+#registration-form input::placeholder,
+#registration-form textarea::placeholder {
+    color: #d08aa6;
+}
+
+#registration-form input:focus,
+#registration-form textarea:focus {
+    border-color: #ff8aae;
+    outline: none;
+}
+
+
+#submit-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffb6c1; 
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#submit-button:hover {
+    background-color: #ff8aae; 
+    transform: translateY(-2px);
+}
+
+#submit-button:active {
+    background-color: #e5739f;
+    transform: translateY(0);
+}
+.error {
+    color: #e5739f; 
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: block;
+}
+
 @media (max-width: 1280px){
     header{
         padding: 14px 2%;
