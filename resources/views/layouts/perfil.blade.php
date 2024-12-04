@@ -16,12 +16,12 @@
         <h1>Perfil</h1>
         <span>{{ session('message') }}</span>
             <div class="user-icon">
-        @if($user->photo)
-            <img src="{{ asset('storage/' . $user->photo) }}" class="perfil-img" alt="Foto do Usuário">
-        @else
-        <img src="../imgs/perfil-default.png" class="perfil-img" alt="Foto do Usuário">
-        @endif
-    </div>
+                @if($user->photo)
+                    <img src="{{ asset('storage/' . $user->photo) }}" class="perfil-img" alt="Foto do Usuário">
+                @else
+                    <img src="../imgs/perfil-default.png" class="perfil-img" alt="Foto do Usuário">
+                @endif
+            </div>
 
         @if($user != null)
         <form id="registration-form" action="{{ route('UpdateUser', [$user->id]) }}" method="post" enctype="multipart/form-data">
