@@ -12,7 +12,7 @@
 <header>
     <a href="/" class="logo"><i class="ri-home-heart-fill"></i><span>GPop</span></a>
     <ul class="navbar">
-        <li> 
+        <li>  
             @auth
                 <a>Bem-vindo(a), {{ Auth::user()->name }} &#127827; </a>
             @else
