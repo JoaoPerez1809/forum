@@ -1,0 +1,234 @@
+
+.blog-post {
+    margin-bottom: 40px;
+}
+
+.post-title {
+    font-size: 28px;
+    color: #4A4A4A;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.post-image {
+    display: block;
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.comments-section {
+    margin-top: 30px;
+}
+
+.comments-section h3 {
+    color: #d64a8a;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.comment {
+    display: inline-block;
+    vertical-align: top;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 10px;
+    width: calc(50% - 20px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comment p {
+    color: #d64a8a;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.comment img {
+    max-width: 100%;
+    max-height: 150px;
+    display: block;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 2px solid #d64a8a;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+.comment form {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.btn-submit-comment {
+    background-color: #d64a8a;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit-comment:hover {
+    background-color: #c03b79; /* Rosa mais escuro no hover */
+}
+
+@media (max-width: 1280px){
+    .comment {
+        width: 100%; 
+        margin: 0px 0px 10px 0px;
+    }
+}
+
+.topics-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/**refatorar apartir daqui é o de listagem*/
+
+
+.btn-add-topic {
+    display: inline-block;
+    background-color: var(--main-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-add-topic:hover {
+    background-color: var(--main-color);
+}
+
+.topics-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.topic-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.topic-link {
+    font-size: 18px;
+    color: #d64a8a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.topic-link:hover {
+    text-decoration: underline;
+}
+
+.btn-edit,
+.btn-delete {
+    background-color: var(--main-color);
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-edit {
+    margin-right: 10px;
+}
+
+.btn-edit:hover {
+    background-color: var(--main-color);
+}
+
+.btn-delete {
+    background-color: var(--main-color);
+}
+
+.btn-delete:hover {
+    background-color: var(--main-color);
+}
+
+.delete-form {
+    display: inline;
+}
+
+
+/*** pagina de criar topico**/
+
+.topics-container {
+    margin: 20px auto;
+    padding: 30px;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+}
+
+.post-title {
+    font-size: 28px;
+    color: #4A4A4A;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tags-container .form-check-input {
+    margin-right: 5px;
+}
+
+.tags-container .form-check-label {
+    font-size: 14px;
+    color: #4A4A4A;
+}
+
+.btn-submit-comment {
+    background-color: #d64a8a;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-submit-comment:hover {
+    background-color: #c03b79;
+}
