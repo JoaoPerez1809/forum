@@ -14,15 +14,16 @@
     <ul class="navbar">
         <li>  
             @auth
-                <a>Bem-vindo(a), {{ Auth::user()->name }} &#127827; </a>
+                <a href="/">Bem-vindo(a), {{ Auth::user()->name }} &#127827; </a>
             @else
-                <a>Bem-vindo(a)&#127827;</a>
+                <a href="/">Bem-vindo(a)&#127827;</a>
             @endauth
         </li>
         @auth
             <li><a href="{{ route('ListAllCategory') }}" class="">Categorias<i class='bx bxs-book-heart'></i></a></li>
-            <li><a href="{{ route('ListAllTopics') }}" class="">Tópicos<i class='bx bxs-book-heart'></i></a></li>
-            <li><a href="{{ route('ListAllTags') }}" class="">Tags<i class='bx bxs-book-heart'></i></a></li>
+            <li><a href="{{ route('ListAllTopics') }}" class="">Tópicos<i class='bx bxs-star'></i></a></li>
+            <li><a href="{{ route('ListAllTags') }}" class="">Tags<i class='bx bxs-florist'></i></a></li>
+            <li><a href="{{ route('ListAllUsers') }}" class="">Usuarios<i class='bx bxs-heart-circle'></i></a></li>
      
         @endauth
         <li><a href="#feed" class="">Feed Pops <i class="ri-heart-2-fill"></i></a></li>
