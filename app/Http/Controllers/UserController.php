@@ -11,7 +11,6 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    //listAllUsers ou list_all_users
     public function listAllUsers(Request $request) {
         $users = User::all();
         return view('users.listAllUsers' , compact('users'));
@@ -19,7 +18,6 @@ class UserController extends Controller
 
     public function listUser(Request $request, $uid) {
         $user = User::where('id', $uid)->first();
-        //$message; falar com joao
         return view('users.id.listUserById', ['user' => $user]);
     }
 

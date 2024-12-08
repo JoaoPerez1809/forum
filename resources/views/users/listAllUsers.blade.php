@@ -5,14 +5,20 @@
 @section('content')
 
     <table border="1">
-        <tr>
-            <th>Nome</th>
-            <th>Email</th>
-        </tr>
-        <tr>
-            <td>Fulano</td>
-            <td>fulano@email.com</td>
-        </tr>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                </tr>
+            @endforeach
+        </tbody>
     </table>
 
 @endsection

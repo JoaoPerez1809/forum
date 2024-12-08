@@ -18,17 +18,14 @@ class CommentController extends Controller
             'content' => 'required|string|max:1000',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
         $imagePath = null;
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $imagePath = $request->file('image')->store('comments', 'public');
         }
-
         $comment = Comment::create([
             'topic_id' => $topicId,
             'content' => $request->content,
         ]);
-
         $comment->post()->create([
             'user_id' => Auth::id(),
             'image' => $imagePath,
@@ -46,8 +43,8 @@ class CommentController extends Controller
             abort(403, 'Acesso negado.');
         }
 
-        $comment->post->delete(); // Remove o post relacionado
-        $comment->delete(); // Remove o comentário
+        $comment->post->delete();
+        $comment->delete();
 
         return redirect()->route('showTopic', [$comment->topic_id])
             ->with('message', 'Comentário excluído com sucesso!');
