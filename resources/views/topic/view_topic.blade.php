@@ -1,46 +1,51 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topicos</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-</head>
-<body>
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+<link rel="stylesheet" href="{{ asset('css/tables.css') }}">
+<link rel="stylesheet" href="{{ asset('css/topic.css') }}">
+@endpush
 
-    <div class="d-flex justify-content-center">
-        <div class="col-6 p-5">
-            <h1>Topicos</h1>
-            <a href="{{ route('CreateTopic') }}" class="btn btn-secondary">
-                        Adicionar
-                    </a>
-            <br />
-            <ul>
+@extends('layouts.layout')
+
+@section('title', 'Página Inicial')
+
+@section('content')
+<div class="container">
+    <table class="girly-table">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
             @if(isset($topics))
-            @foreach ($topics as $topic)
-                <li>
-                    <a href="{{ route('showTopic', $topic->id) }}">
-                        {{ $topic->title }}
-                        </a>
-                        @if($topic->post->user_id == Auth::id())
-                        <a href="{{ route('EditTopic', $topic->id) }}" class="btn btn-secondary">
-                            Editar
-                        </a>
-                        <form action="{{ route('DeleteTopic', $topic->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja deletar este tópico?');">
-                                Deletar
-                            </button>
-                        </form>
-                    @endif
-                </li>
-            @endforeach
+                @foreach ($topics as $topic)
+                    <tr>
+                        <td>
+                            <a href="{{ route('showTopic', $topic->id) }}" class="topic-link">{{ $topic->title }}</a>
+                        </td>
+                        <td>
+                            @if($topic->post->user_id == Auth::id())
+                                <a href="{{ route('EditTopic', $topic->id) }}" class="btn-edit">Editar</a>
+                                <form action="{{ route('DeleteTopic', $topic->id) }}" method="POST" class="delete-form" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja deletar este tópico?');">
+                                        Deletar
+                                    </button>
+                                </form>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
             @endif
-            </ul>
-        </div>
-    </div>
-    
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        </tbody>
+    </table>
+    <a href="{{ route('CreateTopic') }}" class="btn-add-topic">Adicionar Tópico</a>
+</div>
+@endsection

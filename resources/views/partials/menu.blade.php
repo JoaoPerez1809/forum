@@ -20,7 +20,10 @@
             @endauth
         </li>
         @auth
-            <li><a href="{{ route('ListAllCategory') }}" class="">Tópicos <i class='bx bxs-book-heart'></i></a></li>
+            <li><a href="{{ route('ListAllCategory') }}" class="">Categorias<i class='bx bxs-book-heart'></i></a></li>
+            <li><a href="{{ route('ListAllTopics') }}" class="">Tópicos<i class='bx bxs-book-heart'></i></a></li>
+            <li><a href="{{ route('ListAllTags') }}" class="">Tags<i class='bx bxs-book-heart'></i></a></li>
+     
         @endauth
         <li><a href="#feed" class="">Feed Pops <i class="ri-heart-2-fill"></i></a></li>
     </ul>

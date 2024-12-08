@@ -1,86 +1,73 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criação Topico</title>
-    <style>
-        .form-container {
-            width: 300px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
-        }
-        label, input, textarea {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        .error {
-            color: red;
-            font-size: 0.9em;
-        }
-        #submit-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #submit-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+<link rel="stylesheet" href="{{ asset('css/topic.css') }}">
+<link rel="stylesheet" href="{{ asset('css/editcategory.css') }}">
+@endpush
 
-<div class="form-container">
-    <h1>Criar Topico</h1>
+@extends('layouts.layout')
+
+@section('title', 'Página Inicial')
+
+@section('content')
+
+<div class="container">
+    <h1 class="post-title">Criar Tópico</h1>
     <form id="registration-form" action="{{ route('CreateTopic') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <label for="title" class="form-label">Título</label>
-                <input type="text" name="title" id="title" class="form-control" />
-                @error('title') <span>{{ $message }}</span> <br /> @enderror
+        @csrf
+        <div class="form-group">
+            <label for="title" >Título</label>
+            <input type="text" name="title" id="title"/>
+            @error('title') <span class="error">{{ $message }}</span> @enderror
+        </div>
 
-                <label for="description" class="form-label">Descrição</label>
-                <input type="text" name="description" id="description" class="form-control" />
-                @error('description') <span>{{ $message }}</span> <br /> @enderror
+        <div class="form-group">
+            <label for="description">Descrição</label>
+            <input type="text" name="description" id="description"/>
+            @error('description') <span class="error">{{ $message }}</span> @enderror
+        </div>
 
-                <label for="status" class="form-label">Status</label>
-                <input type="text" name="status" id="status" class="form-control" />
-                @error('status') <span>{{ $message }}</span> <br /> @enderror
+        <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" name="status" id="status"/>
+            @error('status') <span class="error">{{ $message }}</span> @enderror
+        </div>
 
-                <label for="image" class="form-label">Imagem</label>
-                <input type="file" name="image" id="image" class="form-control" />
-                @error('image') <span>{{ $message }}</span> <br /> @enderror
+        <div class="form-group">
+            <label for="image">Imagem</label>
+            <input type="file" name="image" id="image" />
+            @error('image') <span class="error">{{ $message }}</span> @enderror
+        </div>
 
-                <label for="category" class="form-label">Categoria</label>
-                <select name="category" id="category" class="form-control">
+        <div class="form-group">
+            <label for="category">Categoria</label>
+            <select name="category" id="category">
                 @if(isset($categories))
-                @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->title }}</option>
-                @endforeach
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                    @endforeach
                 @endif
-                </select>
+            </select>
+        </div>
 
-                <label for="tags" class="form-label">Tags</label>
-                @if(isset($tags))
-                @foreach ($tags as $tag)
-                <input type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag_{{ $tag->id }}">
-                    <label for="tag_{{ $tag->id }}">
-                        {{ $tag->title }}
-                    </label>
-                @endforeach
-                @endif
-                
+        <div class="form-group">
+            <label for="tags" class="form-label">Tags</label>
+            @if(isset($tags))
+                <div class="tags-container">
+                    @foreach ($tags as $tag)
+                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}" id="tag_{{ $tag->id }}" class="form-check-input">
+                        <label for="tag_{{ $tag->id }}" class="form-check-label">{{ $tag->title }}</label>
+                    @endforeach
+                </div>
+            @endif
+        </div>
 
         <input type="submit" value="Cadastrar" id="submit-button">
     </form>
 </div>
 
-</body>
-</html>
+@endsection
