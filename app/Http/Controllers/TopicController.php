@@ -32,25 +32,21 @@ class TopicController extends Controller
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'tags' => 'array',
         'tags.*' => 'exists:tags,id',
-        
     ]);
 
     $topic = Topic::findOrFail($tid);
 
-    // Atualizar os campos
     $topic->title = $request->title;
     $topic->description = $request->description;
     $topic->status = $request->status;
     $topic->category_id = $request->category;
 
-    // Verifica se uma nova imagem foi enviada
     if ($request->hasFile('image') && $request->file('image')->isValid()) {
-        // Apagar a imagem antiga, se necessário
+
         if ($topic->post->image) {
             \Storage::disk('public')->delete($topic->post->image);
         }
 
-        // Salvar a nova imagem
         $imagePath = $request->file('image')->store('topics', 'public');
         $topic->post->image = $imagePath;
         $topic->post->save();
@@ -88,8 +84,6 @@ class TopicController extends Controller
 
     public function storeTopic(Request $request) {
         $userId = Auth::id();
-    
-
             $request->validate([
                 'title' => 'required|string',
                 'description' => 'required|string',
@@ -99,7 +93,6 @@ class TopicController extends Controller
                 'tags' => 'array',
                 'tags.*' => 'exists:tags,id',
             ]);
-
 
             $imagePath = null;
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -130,8 +123,8 @@ class TopicController extends Controller
     public function editTopic($tid)
 {
     $topic = Topic::with(['post.user', 'category', 'tags'])->findOrFail($tid);
-    $categories = Category::all(); // Busca todas as categorias
-    $tags = Tag::all(); // Busca todas as categorias
+    $categories = Category::all();
+    $tags = Tag::all();
     return view('topic.id.edit.editTopic', compact('topic', 'categories', 'tags'));
 }
 }

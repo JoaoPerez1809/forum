@@ -8,15 +8,11 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    //listAllCategory ou list_all_category
     public function listAllCategory(Request $request) {
-        // Lógica
         $categories = Category::all();
-
         return view('category.listAllCategory', compact('categories'));
     }
 
-     // Método para mostrar uma categoria específica
      public function showCategory($cid) {
         $category = Category::findOrFail($cid);
         return view('category.id.showCategory', compact('category'));
@@ -26,9 +22,7 @@ class CategoryController extends Controller
         $category = Category::where('id', $cid)->first();
         $category->title = $request->title;
         $category->description = $request->description;
-        
         $category->save();
-
         return redirect()->route('showCategory', [$category->id])
         ->with('message', 'Atualizado com sucesso!');
     }
@@ -47,14 +41,10 @@ class CategoryController extends Controller
                 'title' => 'required|string|max:50',
                 'description' => 'required|string|max:255',
             ]);
-
             $category = Category::create([
                 'title' => $request->title,
                 'description' => $request->description,
                 ]);
-
-            
-
             return redirect()->intended('/category')->with('success', 'Categoria registrada com sucesso');
         }
     }
@@ -62,6 +52,4 @@ class CategoryController extends Controller
     public function editCategory() {
         return view('category.id.edit.editCategory');
     }
-
-
 }
