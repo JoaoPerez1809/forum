@@ -1,44 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criação Tag</title>
-    <style>
-        .form-container {
-            width: 300px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
-        }
-        label, input, textarea {
-            display: block;
-            width: 100%;
-            margin-bottom: 10px;
-        }
-        .error {
-            color: red;
-            font-size: 0.9em;
-        }
-        #submit-button {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        #submit-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/menu.css') }}">
+<link rel="stylesheet" href="{{ asset('css/topic.css') }}">
+<link rel="stylesheet" href="{{ asset('css/editcategory.css') }}">
+@endpush
 
-<div class="form-container">
+@extends('layouts.layout')
+
+@section('title', 'Página Inicial')
+
+@section('content')
+
+<div class="container">
     <h1>Cadastrar Tag</h1>
     <form id="registration-form" action="{{ route('CreateTag') }}" method="post">
         @csrf
@@ -51,6 +28,4 @@
         <input type="submit" value="Cadastrar" id="submit-button">
     </form>
 </div>
-
-</body>
-</html>
+@endsection
